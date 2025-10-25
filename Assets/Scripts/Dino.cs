@@ -1,7 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Rendering.Universal.Internal;
 
 public class Dino : MonoBehaviour
 {
+
+
+    public GroundedCheck groundedCheck;
 
     Vector2 yVelocity;
 
@@ -12,34 +16,45 @@ public class Dino : MonoBehaviour
     float gravity;
 
     float groundPosition = 0;
-    bool isGrounded = false;
+
+    Rigidbody2D rb;
+
 
     void Start()
     {
-
+        rb = GetComponent<Rigidbody2D>();
         gravity = (2 * maxHeight) / Mathf.Pow(timeToPeak, 2);
         jumpSpeed = gravity * timeToPeak;
-
         groundPosition = transform.position.y;
+
+        if (groundedCheck == null)
+        {
+            Debug.LogError("❌ GroundedCheck não foi atribuído no Inspector no objeto " + gameObject.name);
+            return;
+        }
     }
 
     void Update()
     {
-
+        
         yVelocity += gravity * Time.deltaTime * Vector2.down;
 
-        if (transform.position.y <= groundPosition)
+        if (transform.position.y <= groundPosition && groundedCheck.IsGrounded())
         {
             transform.position = new Vector3(transform.position.x, groundPosition, transform.position.z);
             yVelocity = Vector3.zero;
-            isGrounded = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+ 
+        if (Input.GetKeyDown(KeyCode.Space) && groundedCheck.IsGrounded())
         {
             yVelocity = jumpSpeed * Vector2.up;
         }
 
-        transform.position += (Vector3)(yVelocity * Time.deltaTime);
+
+        //transform.position += (Vector3)(yVelocity * Time.deltaTime);
+        rb.linearVelocity = new Vector2(0, yVelocity.y);
     }
+
+
 }
