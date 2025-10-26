@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: a02f52879079fcf40b0b2653cba8de2c
+guid: 5cdaecc9c2502ab4cb68236a38082714
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8090417790462921226
-    second: DownPlayer_0
-  - first:
-      213: 2437452238067132786
-    second: DownPlayer_1
-  - first:
-      213: -5237448191872600942
-    second: DownPlayer_2
-  - first:
-      213: -8699433441681622364
-    second: DownPlayer_3
+      213: 7223950226953391895
+    second: Tiles_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,18 +37,18 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -81,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 16384
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -105,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DownPlayer_0
+      name: Tiles_0
       rect:
         serializedVersion: 2
-        x: 70
-        y: 107
-        width: 21
-        height: 29
+        x: 160
+        y: 164
+        width: 80
+        height: 72
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,74 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6f5f4fa62ef09bf80800000000000000
-      internalID: -8090417790462921226
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DownPlayer_1
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 104
-        width: 21
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 279e8f675e193d120800000000000000
-      internalID: 2437452238067132786
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DownPlayer_2
-      rect:
-        serializedVersion: 2
-        x: 134
-        y: 104
-        width: 19
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 294fbe16e98d057b0800000000000000
-      internalID: -5237448191872600942
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: DownPlayer_3
-      rect:
-        serializedVersion: 2
-        x: 166
-        y: 104
-        width: 19
-        height: 29
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4aab9695067654780800000000000000
-      internalID: -8699433441681622364
+      spriteID: 71fc8a01570a04460800000000000000
+      internalID: 7223950226953391895
       vertices: []
       indices: 
       edges: []
@@ -200,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -210,10 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      DownPlayer_0: -8090417790462921226
-      DownPlayer_1: 2437452238067132786
-      DownPlayer_2: -5237448191872600942
-      DownPlayer_3: -8699433441681622364
+      Tiles_0: 7223950226953391895
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
