@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] LayerMask whatIsGround;
     [SerializeField] Transform groundCheck;
     [SerializeField] float groundCheckRadius = 0.2f;
+    public PointUI point;
 
     Rigidbody2D rb;
 
@@ -15,11 +16,15 @@ public class Player : MonoBehaviour
     }
 
     void Update()
+
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded())
+
+      
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && isGrounded())
         {
             Jump();
         }
+        point.AdicionarPontos(1);
     }
 
     void Jump()
