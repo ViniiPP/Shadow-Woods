@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Fly : MonoBehaviour
 {
-    float speed = 4;
+
 
 
 
@@ -13,7 +13,9 @@ public class Fly : MonoBehaviour
 
     void Update()
     {
-        transform.position += Vector3.left * speed * Time.deltaTime;
+
+        SpeedGlobal.UpdateAceleration();
+        transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime * 1.2f ;
         if (transform.position.x <= -5)
         {
             Destroy(gameObject);

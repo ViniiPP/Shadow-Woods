@@ -2,15 +2,18 @@ using UnityEngine;
 
 public class Cactus : MonoBehaviour
 {
-    public float speed = 3;
-
+  
+    
     void Start()
     {
-        
+  
     }
     void Update()
     {
-        transform.position += Vector3.left * speed * Time.deltaTime;
+
+        float speedCactus = SpeedGlobal.speed;
+        SpeedGlobal.UpdateAceleration();
+        transform.position += Vector3.left * speedCactus * Time.deltaTime;
         if (transform.position.x <= -5)
         {
             Destroy(gameObject);

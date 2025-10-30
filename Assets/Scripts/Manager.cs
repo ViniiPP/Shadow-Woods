@@ -29,11 +29,12 @@ public class Manager : MonoBehaviour
                 // colidiu
                 enemySpawn.stopSpawning = true;
 
-                groundmovement.speed = 0;
+                SpeedGlobal.speed = 0;
 
                 Cactus[] allCactus = FindObjectsByType<Cactus>(FindObjectsSortMode.None);
                 foreach (Cactus obj in allCactus)
-                    obj.speed = 0;
+                    SpeedGlobal.speed = 0;
+                    SpeedGlobal.isDead = true;
                 
 
             }
