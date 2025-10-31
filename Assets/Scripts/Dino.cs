@@ -26,11 +26,22 @@ public class Dino : MonoBehaviour
             Jump();
         }
 
+
+        if (Input.GetKeyDown(KeyCode.S) && !groundedCheck.IsGrounded()) {
+
+            forceFall();       
+        }
+
         point.AdicionarPontos(1);
     }
 
     void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+    }
+
+    void forceFall ()
+    {
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, -jumpForce);
     }
 }
