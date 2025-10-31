@@ -39,7 +39,7 @@ public class EnemySpawn : MonoBehaviour
         // spawn do cacto
         if (Time.time >= cactus.instantiateTime && !stopSpawning)
         {
-            GameObject obj = Instantiate(cactusPrefabRef, new Vector3(5, -0.9f), Quaternion.identity);
+            GameObject obj = Instantiate(cactusPrefabRef, new Vector3(5, -0.7f), Quaternion.identity);
             obj.GetComponent<SpriteRenderer>().sprite = cactusSprites[Random.Range(0, cactusSprites.Length)];
             obj.AddComponent<BoxCollider2D>();
             cactus.instantiateTime = Time.time + Random.Range(cactus.interval - cactus.intervalVariation, cactus.interval + cactus.intervalVariation);

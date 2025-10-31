@@ -7,9 +7,9 @@ using UnityEngine;
 public static class SpeedGlobal 
 {
 
-    public static float speed = 4f ;
-    public static float maxSpeed  = 15f;
-    public static float acceleration = 0.02f;
+    public static float speed = 5f ;
+    public static float maxSpeed  = 12f;
+    public static float acceleration = 0.3f;
     public static bool isDead = false;
 
     public static void UpdateAceleration ()
