@@ -5,6 +5,8 @@ public class Dino : MonoBehaviour
     [SerializeField]public float jumpForce = 5f;          // Força do pulo
     public GroundedCheck groundedCheck;   // Script que detecta se está no chão
     private Rigidbody2D rb;
+
+    float pontosPorSegundo = 10f;
     public PointUI point;
 
     void Start()
@@ -32,7 +34,7 @@ public class Dino : MonoBehaviour
             forceFall();       
         }
 
-        point.AdicionarPontos(1);
+        point.AdicionarPontos(pontosPorSegundo * Time.deltaTime);
     }
 
     void Jump()

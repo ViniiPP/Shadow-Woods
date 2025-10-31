@@ -9,7 +9,7 @@ public static class SpeedGlobal
 
     public static float speed = 5f ;
     public static float maxSpeed  = 12f;
-    public static float acceleration = 0.3f;
+    public static float acceleration = 0.03f;
     public static bool isDead = false;
 
     public static void UpdateAceleration ()

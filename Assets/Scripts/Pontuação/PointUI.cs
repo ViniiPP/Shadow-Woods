@@ -6,12 +6,12 @@ public class PointUI : MonoBehaviour
 {
 
     public TextMeshProUGUI scoreText;
-    public int score;
+    public float score;
   
     void Start() => AtualizarHUD();
 
     // Update is called once per frame
-    public void AdicionarPontos(int pontos)
+    public void AdicionarPontos(float pontos)
     {
         score += pontos;
         AtualizarHUD();
@@ -20,6 +20,6 @@ public class PointUI : MonoBehaviour
 
     void AtualizarHUD()
     {
-        scoreText.text = $"Pontos: {score}";
+        scoreText.text = $"Pontos: {Mathf.RoundToInt(score)}";
     }
 }
