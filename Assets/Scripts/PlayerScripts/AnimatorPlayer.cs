@@ -17,13 +17,10 @@ public class PlayerAnimator : MonoBehaviour
     void Update()
     {
 
-
-        /*if (!groundedCheck.IsGrounded() && rb.linearVelocity.y > 0.1f)
-        {
-           animator.SetTrigger("Jump");
-        }*/
-        Debug.Log("Y Velocity: " + rb.linearVelocity.y);
-        Debug.Log("Is Grounded: " + groundedCheck.IsGrounded());
+     
+        animator.SetBool("isDead", playerScript.isFreeze);
+      
+        
         animator.SetBool("isGrounded", groundedCheck.IsGrounded());
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
 

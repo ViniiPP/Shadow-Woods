@@ -8,6 +8,7 @@ public class Dino : MonoBehaviour
 
     float pontosPorSegundo = 10f;
     public PointUI point;
+    public bool isFreeze = false; 
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class Dino : MonoBehaviour
 
     void Update()
     {
+        if (isFreeze) return;
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W)) && groundedCheck.IsGrounded())
         {
     
@@ -46,4 +48,6 @@ public class Dino : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, -jumpForce);
     }
+
+
 }

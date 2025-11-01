@@ -28,6 +28,7 @@ public class Manager : MonoBehaviour
                 gameOver = true;
                 // colidiu
                 enemySpawn.stopSpawning = true;
+                dino.isFreeze = true;
 
                 SpeedGlobal.speed = 0;
 
