@@ -1,22 +1,25 @@
 using UnityEngine;
 
-public class Cactus : MonoBehaviour
+public class Bird : MonoBehaviour
 {
-  
-    
+
+
+
+
     void Start()
     {
-  
+        
     }
+
     void Update()
     {
 
-        float speedCactus = SpeedGlobal.speed;
         SpeedGlobal.UpdateAceleration();
-        transform.position += Vector3.left * speedCactus * Time.deltaTime;
+        transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime * 1.2f ;
         if (transform.position.x <= -5)
         {
             Destroy(gameObject);
         }
+
     }
 }

@@ -19,8 +19,8 @@ public class PlayerAnimator : MonoBehaviour
 
      
         animator.SetBool("isDead", playerScript.isFreeze);
-      
-        
+        animator.SetBool("Dodge", playerScript.isDodge);
+        animator.SetBool("Crounching", playerScript.isCrouChing);
         animator.SetBool("isGrounded", groundedCheck.IsGrounded());
         animator.SetFloat("yVelocity", rb.linearVelocity.y);
 

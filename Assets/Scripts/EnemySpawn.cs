@@ -20,7 +20,7 @@ public class EnemySpawn : MonoBehaviour
     public bool stopSpawning = false;
 
     float flyMaxHeight = 2;
-    float flyMinHeight = -1;
+    float flyMinHeight = 0;
 
     void Start()
     {
@@ -48,7 +48,10 @@ public class EnemySpawn : MonoBehaviour
         // spawn do passaro
         if (Time.time >= Fly.instantiateTime && !stopSpawning)
         {
-            GameObject obj = Instantiate(flyPrefabRef, new Vector3(5, Random.Range(flyMaxHeight, flyMinHeight)), Quaternion.identity);
+            for (int i = 0; i < 2; i++)
+            {
+                GameObject obj = Instantiate(flyPrefabRef, new Vector3(5, Random.Range(flyMaxHeight, flyMinHeight)), Quaternion.identity);
+            }
             Fly.instantiateTime = Time.time + Random.Range(Fly.interval - Fly.intervalVariation, Fly.interval + Fly.intervalVariation);
         }
     }
