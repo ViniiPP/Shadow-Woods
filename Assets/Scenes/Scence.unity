@@ -993,6 +993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb28a590d028e8940b9f059d1fa6cbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawn
+  dino: {fileID: 0}
   cactusSprites:
   - {fileID: 7679083508794041174, guid: 8b2f6e69a493e0a439075196ecc66159, type: 3}
   - {fileID: -850843484704018319, guid: 8b2f6e69a493e0a439075196ecc66159, type: 3}
@@ -1004,6 +1005,7 @@ MonoBehaviour:
   - {fileID: -4227235244159359035, guid: 8b2f6e69a493e0a439075196ecc66159, type: 3}
   cactusPrefabRef: {fileID: 6989197527484481765, guid: 61b6a699090cfc042bafe5a08370b702, type: 3}
   flyPrefabRef: {fileID: 4703252770047840134, guid: c5d308d45584f264481ae7a6a8c2b37a, type: 3}
+  birdOffsetY: 0.5
   stopSpawning: 0
 --- !u!114 &519420035
 MonoBehaviour:
@@ -1965,8 +1967,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 326, y: 218}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 381.35, y: 217.2}
+  m_SizeDelta: {x: 202.34, y: 17.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1325982533
 MonoBehaviour:
@@ -1988,10 +1990,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'SCORE : 0'
+  m_text: 'SCORE: 0'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 86f69b8083ffe4e409b7109b403d97c0, type: 2}
+  m_sharedMaterial: {fileID: 2275865660184336432, guid: 86f69b8083ffe4e409b7109b403d97c0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2015,8 +2017,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2053,7 +2055,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -0.000024795532, z: -67.39481, w: 0}
+  m_margin: {x: -0.9016714, y: -0.000024795532, z: -0.17708206, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

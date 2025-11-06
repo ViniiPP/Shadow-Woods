@@ -1,22 +1,25 @@
 using UnityEngine;
 
-public class GroundEnemy : MonoBehaviour
+public class Fly : MonoBehaviour
 {
-  
-    
+
+
+
+
     void Start()
     {
-  
+        
     }
+
     void Update()
     {
 
-        float speedCactus = SpeedGlobal.speed * 1.1f;
         SpeedGlobal.UpdateAceleration();
-        transform.position += Vector3.left * speedCactus * Time.deltaTime;
+        transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime * 1.2f ;
         if (transform.position.x <= -5)
         {
             Destroy(gameObject);
         }
+
     }
 }

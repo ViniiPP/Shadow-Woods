@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GroundEnemy : MonoBehaviour
+public class Cactus : MonoBehaviour
 {
   
     
@@ -11,7 +11,7 @@ public class GroundEnemy : MonoBehaviour
     void Update()
     {
 
-        float speedCactus = SpeedGlobal.speed * 1.1f;
+        float speedCactus = SpeedGlobal.speed;
         SpeedGlobal.UpdateAceleration();
         transform.position += Vector3.left * speedCactus * Time.deltaTime;
         if (transform.position.x <= -5)

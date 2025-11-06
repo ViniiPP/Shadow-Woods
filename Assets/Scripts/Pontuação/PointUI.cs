@@ -20,6 +20,6 @@ public class PointUI : MonoBehaviour
 
     void AtualizarHUD()
     {
-        scoreText.text = $"Pontos: {Mathf.RoundToInt(score)}";
+        scoreText.text = $"Pontos:{Mathf.RoundToInt(score)}";
     }
 }
