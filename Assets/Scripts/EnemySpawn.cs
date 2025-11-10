@@ -39,6 +39,8 @@ public class EnemySpawn : MonoBehaviour
     void Update()
     {
         if (stopSpawning) return;
+        if (ManageMap.Instance.GetCurrentMap() == MapList.TransitionMap) return;
+
 
         // spawn do cacto
         if (Time.time >= cactus.instantiateTime)
@@ -67,6 +69,7 @@ public class EnemySpawn : MonoBehaviour
             else
             {
                 spawnY = Random.Range(0f, 2f); // Altura aleatória caso não ache o Dino
+                ;
             }
 
             Instantiate(flyPrefabRef, new Vector3(5, spawnY), Quaternion.identity);

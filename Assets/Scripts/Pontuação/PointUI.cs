@@ -1,13 +1,16 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class PointUI : MonoBehaviour
 {
 
     public TextMeshProUGUI scoreText;
-    public float score;
-  
+    public static float score { get; set; }
+    
+
+    
     void Start() => AtualizarHUD();
 
     // Update is called once per frame
@@ -15,6 +18,7 @@ public class PointUI : MonoBehaviour
     {
         score += pontos;
         AtualizarHUD();
+        
     }
 
 

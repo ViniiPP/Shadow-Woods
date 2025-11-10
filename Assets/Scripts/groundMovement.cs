@@ -1,35 +1,130 @@
+﻿using Unity.VisualScripting;
 using UnityEngine;
 
 public class GroundMovement : MonoBehaviour
 {
+    [Header("FirstMap")]
     public Sprite[] groundSprites;
-
     public SpriteRenderer[] grounds;
 
+    [Header("Transition")]
+    public GameObject transitionMap;
+    public GameObject removeGround;
+    public GameObject removeBackGround;
 
+    [Header("SecondMap")]
+    public GameObject secondBackGround;     // vai ser instanciado
+    public GameObject fullGroundCavePrefab; // PREFAB (para instanciar)
+    public GameObject fullGroundCave;       // referência do objeto instanciado
+    public Sprite[] groundSpritesCave;
+    public SpriteRenderer[] groundsCave;    // já na cena (filhos do groundCave)
+
+    bool spawnedSecondBack = false;
+    bool spawnedFullGround = false;
+
+    bool startedTransition = false;
 
     Vector2 endPosition = new Vector2(-5.72f, -1f);
     Vector2 startPosition = new Vector2(6.00f, -1f);
-
-    void Start()
-    {
-
-    }
+    Vector2 caveStartPosition = new Vector2(6.00f, -1.252f);
 
     void Update()
     {
-
-
         SpeedGlobal.UpdateAceleration();
-        for (int i = 0; i < grounds.Length; i++)
-        {
-            grounds[i].transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime;
-            if (grounds[i].transform.position.x <= endPosition.x)
-            {
-                grounds[i].transform.position = startPosition;
-                grounds[i].sprite = groundSprites[Random.Range(0, groundSprites.Length)];
-            }
 
+        switch (ManageMap.Instance.GetCurrentMap())
+        {
+            case MapList.FirstMap:
+
+                for (int i = 0; i < grounds.Length; i++)
+                {
+                    grounds[i].transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime;
+
+                    if (grounds[i].transform.position.x <= endPosition.x)
+                    {
+                        grounds[i].transform.position = startPosition;
+                        grounds[i].sprite = groundSprites[Random.Range(0, groundSprites.Length)];
+                    }
+                }
+
+                if (PointUI.score >= 300)
+                {
+                    ManageMap.Instance.SetCurrentMap(MapList.TransitionMap);
+
+                 
+                    transitionMap = Instantiate(transitionMap, new Vector2(7.76f, 1.07f), Quaternion.identity);
+                    transitionMap.transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime;
+                }
+
+                break;
+            case MapList.TransitionMap:
+
+                if (!startedTransition)
+                {
+                    startedTransition = true;
+                }
+
+                transitionMap.transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime;
+
+                removeGround.transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime;
+
+                if (removeGround.transform.position.x <= endPosition.x - 10f)
+                {
+                    removeGround.SetActive(false);
+                    Destroy(removeBackGround);
+                }
+
+                if (PointUI.score >= 480)
+                {
+                    ManageMap.Instance.SetCurrentMap(MapList.SecondMap);
+                }
+
+                break;
+
+            // -------------------------------------------
+            // SECOND MAP
+            // -------------------------------------------
+            case MapList.SecondMap:
+
+                // ✅ instancia o fundo do segundo mapa
+                if (!spawnedSecondBack)
+                {
+                    Instantiate(secondBackGround, new Vector2(-0.547f, 1.33f), Quaternion.identity);
+                    spawnedSecondBack = true;
+                }
+
+                // ✅ instancia o bloco grande como antes
+                if (!spawnedFullGround)
+                {
+                    
+                    spawnedFullGround = true;
+                }
+
+                // ✅ move o bloco grande
+        
+
+                // ✅ move os tiles do chão que já estão na cena
+                for (int i = 0; i < groundsCave.Length; i++)
+                {
+                    groundsCave[i].transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime;
+
+                    if (groundsCave[i].transform.position.x <= endPosition.x)
+                    {
+                        groundsCave[i].transform.position = caveStartPosition;
+                        groundsCave[i].sprite = groundSpritesCave[Random.Range(0, groundSpritesCave.Length)];
+                    }
+                }
+
+                // ✅ transição continua saindo
+                if (transitionMap != null && !transitionMap.IsDestroyed())
+                {
+                    transitionMap.transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime;
+
+                    if (transitionMap.transform.position.x <= endPosition.x - 20f)
+                        Destroy(transitionMap);
+                }
+
+                break;
         }
     }
 }
