@@ -26,7 +26,7 @@ public class GroundMovement : MonoBehaviour
 
     Vector2 endPosition = new Vector2(-5.72f, -1f);
     Vector2 startPosition = new Vector2(6.00f, -1f);
-    Vector2 caveStartPosition = new Vector2(6.00f, -1.252f);
+    Vector2 caveStartPosition = new Vector2(9.98F, -1.252f);
 
     void Update()
     {
@@ -81,29 +81,21 @@ public class GroundMovement : MonoBehaviour
 
                 break;
 
-            // -------------------------------------------
-            // SECOND MAP
-            // -------------------------------------------
+
             case MapList.SecondMap:
 
-                // ✅ instancia o fundo do segundo mapa
                 if (!spawnedSecondBack)
                 {
                     Instantiate(secondBackGround, new Vector2(-0.547f, 1.33f), Quaternion.identity);
                     spawnedSecondBack = true;
                 }
 
-                // ✅ instancia o bloco grande como antes
                 if (!spawnedFullGround)
                 {
-                    
+                    groundsCave = fullGroundCave.GetComponentsInChildren<SpriteRenderer>();
                     spawnedFullGround = true;
                 }
 
-                // ✅ move o bloco grande
-        
-
-                // ✅ move os tiles do chão que já estão na cena
                 for (int i = 0; i < groundsCave.Length; i++)
                 {
                     groundsCave[i].transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime;
