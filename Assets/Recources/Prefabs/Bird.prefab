@@ -60,6 +60,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bird
       objectReference: {fileID: 0}
+    - target: {fileID: 6734842505379741945, guid: 6627cc4e84b072b4f9cfaff994ad2ad3, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7706544990038338237, guid: 6627cc4e84b072b4f9cfaff994ad2ad3, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7706544990038338237, guid: 6627cc4e84b072b4f9cfaff994ad2ad3, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 0.4
