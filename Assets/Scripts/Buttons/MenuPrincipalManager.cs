@@ -8,6 +8,10 @@ public class MenuPrincipalManager : MonoBehaviour
 
     public void jogar()
     {
+        Time.timeScale = 1f; // Garante que o jogo não está pausado
+        SpeedGlobal.isDead = false; // Reseta o estado "morto"
+        SpeedGlobal.speed = SpeedGlobal.initialSpeed; // Reseta a velocidade
+
         SceneManager.LoadScene("Scence");
     }
 
@@ -17,5 +21,3 @@ public class MenuPrincipalManager : MonoBehaviour
         Application.Quit();
     }
 }
-
-
