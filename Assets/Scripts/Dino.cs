@@ -72,7 +72,7 @@ public class Dino : MonoBehaviour
             isDodge = false;
         }
 
-        point.AdicionarPontos(pontosPorSegundo * Time.deltaTime * 5);
+        point.AdicionarPontos(pontosPorSegundo * Time.deltaTime);
     }
 
     void Jump()

@@ -52,7 +52,7 @@ public class GroundMovement : MonoBehaviour
                     ManageMap.Instance.SetCurrentMap(MapList.TransitionMap);
 
                  
-                    transitionMap = Instantiate(transitionMap, new Vector2(7.76f, 1.07f), Quaternion.identity);
+                    transitionMap = Instantiate(transitionMap, new Vector2(6.5f, 1.07f), Quaternion.identity);
                     transitionMap.transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime;
                 }
 
@@ -74,6 +74,19 @@ public class GroundMovement : MonoBehaviour
                     Destroy(removeBackGround);
                 }
 
+
+                float largura = GetObjectWidth(transitionMap);    // ex: 30
+                float limiteInterno = largura * 0.6f;             // ex: 30% dentro desses 30 → 9
+
+                // x onde o transitionMap está agora
+                float xAtual = transitionMap.transform.position.x;
+
+                // quando a ponta esquerda dele passar esse limite interno
+                if (xAtual <= (endPosition.x + limiteInterno))
+                {
+                    Debug.Log("⚠️ já passou do trecho interno da largura!");
+                }
+              
                 if (PointUI.score >= 480)
                 {
                     ManageMap.Instance.SetCurrentMap(MapList.SecondMap);
@@ -119,4 +132,18 @@ public class GroundMovement : MonoBehaviour
                 break;
         }
     }
+
+
+    public static float GetObjectWidth(GameObject obj)
+    {
+        Bounds b = new Bounds(obj.transform.position, Vector3.zero);
+
+        foreach (Renderer r in obj.GetComponentsInChildren<Renderer>())
+            b.Encapsulate(r.bounds);
+
+        return b.size.x;
+    }
+
 }
+
+
