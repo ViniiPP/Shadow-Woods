@@ -13,8 +13,6 @@ public class Dino : MonoBehaviour
     public bool isCrouChing ;
     public bool isDodge;
 
-    public GameOverManager gameOverManager;
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -36,6 +34,7 @@ public class Dino : MonoBehaviour
         {
     
             Jump();
+            JumpSong.instance.playSong();
         }
 
 
@@ -63,8 +62,9 @@ public class Dino : MonoBehaviour
                 box.size = new Vector2(0.39f, 0.8f);
             }
 
-        if (Input.GetKey(KeyCode.LeftShift) && !groundedCheck.IsGrounded()) { 
-              box.enabled = false;
+        if (Input.GetKey(KeyCode.LeftShift) && !groundedCheck.IsGrounded()) {
+            DashSongScript.instance.playSong();
+            box.enabled = false;
               isDodge = true;   
         }
 
@@ -72,6 +72,7 @@ public class Dino : MonoBehaviour
         {
             box.enabled = true;
             isDodge = false;
+           
         }
 
         point.AdicionarPontos(pontosPorSegundo * Time.deltaTime);
@@ -87,31 +88,5 @@ public class Dino : MonoBehaviour
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, -jumpForce);
     }
 
-    // Este método é chamado automaticamente pela Unity quando
-    // o collider do Dino (BoxCollider2D) toca em outro collider 2D.
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        // Verificamos se o objeto que tocamos tem a tag "Enemy"
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Morrer();
-        }
-    }
 
-    void Morrer()
-    {
-        isFreeze = true;
-
-        rb.linearVelocity = Vector2.zero;
-
-        if (gameOverManager != null)
-        {
-            gameOverManager.MostrarTelaGameOver();
-        }
-        else
-        {
-            Debug.LogError("❌ GameOverManager não foi atribuído no Inspector do Dino!");
-        }
-
-    }
 }

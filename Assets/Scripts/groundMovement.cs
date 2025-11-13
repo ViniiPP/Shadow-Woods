@@ -35,7 +35,7 @@ public class GroundMovement : MonoBehaviour
         switch (ManageMap.Instance.GetCurrentMap())
         {
             case MapList.FirstMap:
-
+                
                 for (int i = 0; i < grounds.Length; i++)
                 {
                     grounds[i].transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime;
@@ -47,7 +47,9 @@ public class GroundMovement : MonoBehaviour
                     }
                 }
 
-                if (PointUI.score >= 300)
+      
+
+                if (PointUI.score >= 600)
                 {
                     ManageMap.Instance.SetCurrentMap(MapList.TransitionMap);
 
