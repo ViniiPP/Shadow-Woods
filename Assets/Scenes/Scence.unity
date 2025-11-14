@@ -1468,17 +1468,11 @@ MonoBehaviour:
   transitionMap: {fileID: 1913034081}
   removeGround: {fileID: 1377492138}
   removeBackGround: {fileID: 1580816505}
-  secondBackGround: {fileID: 1241993766}
-  fullGroundCavePrefab: {fileID: 0}
+  secondBackGround: {fileID: 8436485462048986194, guid: 4d65ea58cab24964c8c910d1b3e80d5e, type: 3}
   fullGroundCave: {fileID: 1168198380}
-  groundSpritesCave:
-  - {fileID: 7548920019600827532, guid: 41a26d5d58b9b5c49b1df5bcb4e62138, type: 3}
-  groundsCave:
-  - {fileID: 338571244}
-  - {fileID: 176345019}
-  - {fileID: 848287337}
-  - {fileID: 1359852938}
-  - {fileID: 1546146627}
+  groundSpritesCave: []
+  groundsCave: []
+  InstancegroundsCave: []
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2836,11 +2830,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.25, y: 0.79}
   m_EdgeRadius: 0
---- !u!1 &1241993766 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8436485462048986194, guid: 4d65ea58cab24964c8c910d1b3e80d5e, type: 3}
-  m_PrefabInstance: {fileID: 6171271050668412232}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1257961443
 GameObject:
   m_ObjectHideFlags: 0

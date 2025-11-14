@@ -24,21 +24,18 @@ public class Manager : MonoBehaviour
     {
         if (!gameOver)
         {
-            // reatribui caso algum inimigo tenha sido destruído
             if (birdEnemy == null)
                 birdEnemy = FindFirstObjectByType<Bird>();
 
             if (groundEnemy == null)
                 groundEnemy = FindFirstObjectByType<Cactus>();
 
-            // obtém os colliders
-            BoxCollider2D dinoCol = dino.GetComponent<BoxCollider2D>();
-            BoxCollider2D birdCol = birdEnemy != null ? birdEnemy.GetComponent<BoxCollider2D>() : null;
-            BoxCollider2D groundCol = groundEnemy != null ? groundEnemy.GetComponent<BoxCollider2D>() : null;
+            var dinoCol = dino.GetComponent<BoxCollider2D>();
+            var birdCol = birdEnemy != null ? birdEnemy.GetComponent<BoxCollider2D>() : null;
+            var groundCol = groundEnemy != null ? groundEnemy.GetComponent<BoxCollider2D>() : null;
 
-            // verifica colisão real com qualquer um dos dois inimigos
-            bool touchedBird = (birdCol != null && dinoCol.IsTouching(birdCol));
-            bool touchedGround = (groundCol != null && dinoCol.IsTouching(groundCol));
+            bool touchedBird = birdCol != null && dinoCol.IsTouching(birdCol);
+            bool touchedGround = groundCol != null && dinoCol.IsTouching(groundCol);
 
             if (touchedBird || touchedGround)
             {
@@ -50,7 +47,6 @@ public class Manager : MonoBehaviour
                 SpeedGlobal.speed = 0;
                 SpeedGlobal.isDead = true;
 
-                // congela os cactus existentes
                 Cactus[] allCactus = FindObjectsByType<Cactus>(FindObjectsSortMode.None);
                 foreach (Cactus obj in allCactus)
                 {
@@ -61,12 +57,18 @@ public class Manager : MonoBehaviour
         }
         else
         {
-            // restart
             if (Input.GetKeyDown(KeyCode.R))
             {
-                dino.isFreeze = false;
+                PointUI.resetarPontos();
+
                 SpeedGlobal.speed = SpeedGlobal.initialSpeed;
-                SceneManager.LoadScene(1);
+                SpeedGlobal.isDead = false;
+                GroundMovement ground = GetComponent<GroundMovement>();
+                ground.ResetAll();
+                
+                SceneManager.LoadScene(1);  
+
+                return;
             }
         }
     }

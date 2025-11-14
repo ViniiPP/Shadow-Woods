@@ -13,11 +13,14 @@ public class GroundMovement : MonoBehaviour
     public GameObject removeBackGround;
 
     [Header("SecondMap")]
-    public GameObject secondBackGround;     // vai ser instanciado
-    public GameObject fullGroundCavePrefab; // PREFAB (para instanciar)
+    public GameObject secondBackGround;   // vai ser instanciado
+
     public GameObject fullGroundCave;       // referência do objeto instanciado
     public Sprite[] groundSpritesCave;
-    public SpriteRenderer[] groundsCave;    // já na cena (filhos do groundCave)
+    public SpriteRenderer[] groundsCave;
+    public SpriteRenderer[] InstancegroundsCave;
+
+
 
     bool spawnedSecondBack = false;
     bool spawnedFullGround = false;
@@ -89,7 +92,7 @@ public class GroundMovement : MonoBehaviour
                     Debug.Log("⚠️ já passou do trecho interno da largura!");
                 }
               
-                if (PointUI.score >= 480)
+               if (PointUI.score >= 625)
                 {
                     ManageMap.Instance.SetCurrentMap(MapList.SecondMap);
                 }
@@ -101,7 +104,7 @@ public class GroundMovement : MonoBehaviour
 
                 if (!spawnedSecondBack)
                 {
-                    Instantiate(secondBackGround, new Vector2(-0.547f, 1.33f), Quaternion.identity);
+                    secondBackGround = Instantiate(secondBackGround, new Vector2(-0.547f, 1.33f), Quaternion.identity);
                     spawnedSecondBack = true;
                 }
 
@@ -144,6 +147,37 @@ public class GroundMovement : MonoBehaviour
             b.Encapsulate(r.bounds);
 
         return b.size.x;
+    }
+
+    public void ResetAll()
+    {
+        // destruir instanciados
+        if (secondBackGround) Destroy(secondBackGround);
+   
+ 
+
+        // reset flags
+        spawnedSecondBack = false;
+        spawnedFullGround = false;
+        startedTransition = false;
+
+        // reset score
+        PointUI.score = 0;
+
+        // reset velocidade
+        SpeedGlobal.speed = SpeedGlobal.initialSpeed;
+
+        // reset mapa para o primeiro
+        ManageMap.Instance.SetCurrentMap(MapList.FirstMap);
+
+        // resetar posições iniciais do chão normal
+        for (int i = 0; i < grounds.Length; i++)
+        {
+            grounds[i].transform.position = startPosition;
+            grounds[i].sprite = groundSprites[Random.Range(0, groundSprites.Length)];
+        }
+
+        Debug.Log("✔️ RESET TOTAL FEITO — sem reload de cena");
     }
 
 }
