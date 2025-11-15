@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
@@ -25,5 +26,10 @@ public class PointUI : MonoBehaviour
     void AtualizarHUD()
     {
         scoreText.text = $"Pontos:{Mathf.RoundToInt(score)}";
+    }
+
+    public static void resetarPontos ()
+    {
+        score = 0 ;
     }
 }

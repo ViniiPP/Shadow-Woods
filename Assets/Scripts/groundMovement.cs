@@ -13,11 +13,14 @@ public class GroundMovement : MonoBehaviour
     public GameObject removeBackGround;
 
     [Header("SecondMap")]
-    public GameObject secondBackGround;     // vai ser instanciado
-    public GameObject fullGroundCavePrefab; // PREFAB (para instanciar)
+    public GameObject secondBackGround;   // vai ser instanciado
+
     public GameObject fullGroundCave;       // referência do objeto instanciado
     public Sprite[] groundSpritesCave;
-    public SpriteRenderer[] groundsCave;    // já na cena (filhos do groundCave)
+    public SpriteRenderer[] groundsCave;
+    public SpriteRenderer[] InstancegroundsCave;
+
+
 
     bool spawnedSecondBack = false;
     bool spawnedFullGround = false;
@@ -35,7 +38,7 @@ public class GroundMovement : MonoBehaviour
         switch (ManageMap.Instance.GetCurrentMap())
         {
             case MapList.FirstMap:
-
+                
                 for (int i = 0; i < grounds.Length; i++)
                 {
                     grounds[i].transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime;
@@ -47,12 +50,14 @@ public class GroundMovement : MonoBehaviour
                     }
                 }
 
-                if (PointUI.score >= 300)
+      
+
+                if (PointUI.score >= 600)
                 {
                     ManageMap.Instance.SetCurrentMap(MapList.TransitionMap);
 
                  
-                    transitionMap = Instantiate(transitionMap, new Vector2(7.76f, 1.07f), Quaternion.identity);
+                    transitionMap = Instantiate(transitionMap, new Vector2(6.5f, 1.07f), Quaternion.identity);
                     transitionMap.transform.position += Vector3.left * SpeedGlobal.speed * Time.deltaTime;
                 }
 
@@ -74,7 +79,20 @@ public class GroundMovement : MonoBehaviour
                     Destroy(removeBackGround);
                 }
 
-                if (PointUI.score >= 480)
+
+                float largura = GetObjectWidth(transitionMap);    // ex: 30
+                float limiteInterno = largura * 0.6f;             // ex: 30% dentro desses 30 → 9
+
+                // x onde o transitionMap está agora
+                float xAtual = transitionMap.transform.position.x;
+
+                // quando a ponta esquerda dele passar esse limite interno
+                if (xAtual <= (endPosition.x + limiteInterno))
+                {
+                    Debug.Log("⚠️ já passou do trecho interno da largura!");
+                }
+              
+               if (PointUI.score >= 625)
                 {
                     ManageMap.Instance.SetCurrentMap(MapList.SecondMap);
                 }
@@ -86,7 +104,7 @@ public class GroundMovement : MonoBehaviour
 
                 if (!spawnedSecondBack)
                 {
-                    Instantiate(secondBackGround, new Vector2(-0.547f, 1.33f), Quaternion.identity);
+                    secondBackGround = Instantiate(secondBackGround, new Vector2(-0.547f, 1.33f), Quaternion.identity);
                     spawnedSecondBack = true;
                 }
 
@@ -119,4 +137,49 @@ public class GroundMovement : MonoBehaviour
                 break;
         }
     }
+
+
+    public static float GetObjectWidth(GameObject obj)
+    {
+        Bounds b = new Bounds(obj.transform.position, Vector3.zero);
+
+        foreach (Renderer r in obj.GetComponentsInChildren<Renderer>())
+            b.Encapsulate(r.bounds);
+
+        return b.size.x;
+    }
+
+    public void ResetAll()
+    {
+        // destruir instanciados
+        if (secondBackGround) Destroy(secondBackGround);
+   
+ 
+
+        // reset flags
+        spawnedSecondBack = false;
+        spawnedFullGround = false;
+        startedTransition = false;
+
+        // reset score
+        PointUI.score = 0;
+
+        // reset velocidade
+        SpeedGlobal.speed = SpeedGlobal.initialSpeed;
+
+        // reset mapa para o primeiro
+        ManageMap.Instance.SetCurrentMap(MapList.FirstMap);
+
+        // resetar posições iniciais do chão normal
+        for (int i = 0; i < grounds.Length; i++)
+        {
+            grounds[i].transform.position = startPosition;
+            grounds[i].sprite = groundSprites[Random.Range(0, groundSprites.Length)];
+        }
+
+        Debug.Log("✔️ RESET TOTAL FEITO — sem reload de cena");
+    }
+
 }
+
+
